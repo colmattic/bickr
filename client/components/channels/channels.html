@@ -1,0 +1,16 @@
+<template name="channels">
+
+<div>
+            <div >
+                <h2 >Arenas</h2>
+           
+        <div class="listings_direct-messages"></div>
+        </div>  
+                <ul class="channel_list">
+                    {{#each channels}}
+                        {{> channel subject=subject}}
+                    {{/each}}
+                </ul>
+        </div>
+                    
+ </template>      

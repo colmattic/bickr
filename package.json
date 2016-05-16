@@ -1,0 +1,17 @@
+{
+  "name": "bickr",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "gulp-sass": "^2.2.0",
+    "load-grunt-tasks": "^3.4.1",
+    "meteor-node-stubs": "~0.2.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.1",
+    "grunt-sass": "~1.1.0",
+    "load-grunt-tasks": "~3.4.1"
+  }
+}

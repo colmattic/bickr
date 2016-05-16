@@ -1,0 +1,20 @@
+<template name="messages">
+	
+	<div style="clear: both;">
+	<h1>Arena</h1>
+	<div class="message-u1" style="float: left;">{{>loggedin_user}} </div>
+	<div class="message-u2" style="float: right;">{{>loggedin_user}} </div>
+	</div>
+    <div class="message-history" style="clear: both;">
+        {{#if Template.subscriptionsReady}}
+		    {{#each messages}}
+		        {{> message text=text timestamp=timestamp user=user }}
+		    {{/each}}
+		{{else}}
+		    Loading…
+		{{/if}}
+    </div>
+    <div class="input-box" id="send-message">
+            <input type="text" class="input-box_text" placeholder="Send a fucking message, its your turn. Fool.">
+    </div>
+</template>

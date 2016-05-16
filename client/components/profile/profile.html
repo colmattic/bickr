@@ -1,0 +1,7 @@
+<template name="profile">Username: {{username}}<br>
+    {{! with acts as an if : the following part won't be displayed
+        if the user document has no profile property}}
+    {{#with profile}}
+        Profile name : {{name}}
+    {{/with}}
+</template>

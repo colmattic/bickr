@@ -1,0 +1,19 @@
+<template name="app">
+    {{> header}}
+	<div id="main">
+		<!-- Intro -->
+			<nav id="nav">
+				{{> menu}}											
+			</nav>
+			<section id="top" class="one dark cover">
+				<div class="container">
+					{{#unless currentUser}}
+					  {{> loginPage}}
+					 {{else}}
+					  {{> yield}}
+					{{/unless}}
+				</div>
+			</section>
+			</div>
+			 {{> footer}}
+</template>

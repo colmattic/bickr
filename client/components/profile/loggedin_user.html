@@ -1,0 +1,23 @@
+<template name="loggedin_user">
+<div id="">
+							
+			{{#if currentUser.services.twitter}}
+				<a href="/profile/{{currentUser.services.twitter.screenName}}">
+				<h1 id="title">{{currentUser.services.twitter.screenName}}</h1>
+				<span class="image avatar48">
+				<img src="{{currentUser.services.twitter.profile_image_url}}" alt="" />
+				</span> 
+				<span class="connection_status"></span> 
+				</a>
+				
+			{{else}}
+				<a href="/profile/{{currentUser.username}}"><h1 id="title">{{currentUser.username}}</h1>
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" />
+				<span class="connection_status"></span> 
+				</span>
+				</a>
+			{{/if}}
+							
+							
+</div>
+</template>

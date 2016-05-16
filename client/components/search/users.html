@@ -1,0 +1,50 @@
+<template name = "users">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>username</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each results}}
+      <tr>
+        <td>{{username}} <a class="add-user" data="{{username}}" href="#">Add user</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name = "user2">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>username</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each results}}
+      <tr>
+        <td>{{username}} <a class="add-u2" data="{{username}}" href="#">Add user</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
+
+<template name = "user3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>username</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each results}}
+      <tr>
+        <td>{{username}} <a class="add-u3" data="{{username}}" href="#">Add user</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>
