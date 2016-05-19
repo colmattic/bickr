@@ -18,8 +18,10 @@ Meteor.publish("allUsernames", function() {
 
 Meteor.publish('channels', function(userId) {
     return Channels.find({ u1: userId });
+});
 
-
+Meteor.publish('posts', function(userId) {
+    return Posts.find({ u1: userId });
 });
 
 Meteor.publish('singleUser', function(userId) {

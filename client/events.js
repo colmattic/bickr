@@ -80,3 +80,29 @@ Template.user3.events({
       $('#u3').val(username);
     }
   });
+
+Template.createpost.events({'submit .new-post': function (e) {
+    // Prevent default browser form submit
+    e.preventDefault();
+ 
+    // Get value from form element
+    const target = e.target;
+    
+    
+    // Insert a channel into the collection
+    
+    //make string lower
+    var text = target.text.value;
+
+    
+    var post = {
+      'text':text,
+      'p':target.p.value
+    };
+
+    Meteor.call('newPost',post);
+  debugger;
+    // Clear form
+    target.text.value = '';
+  },
+});

@@ -4,11 +4,24 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 Meteor.subscribe('messages');
 Meteor.subscribe('channels' , Meteor.userId());
+Meteor.subscribe('posts' , Meteor.userId());
 Messages.allow({
   insert: function (userId, doc) {
     return (userId && doc.user === userId);
   }
 });
+
+Posts.allow({
+  insert: function (userId, doc) {
+    return (userId && doc.user === userId);
+  }
+});
+
+Posts.before.insert(function (userId, doc) {
+  doc.timestamp = Date.now();
+});
+
+
 Messages.before.insert(function (userId, doc) {
   doc.timestamp = Date.now();
 });
@@ -52,6 +65,13 @@ Template.channels.helpers({
     channels: function () {
         
         return Channels.find({ u1: Meteor.userId() });
+    }
+});
+
+Template.posts.helpers({
+    posts: function () {
+        
+        return Posts.find({ u: Meteor.userId() });
     }
 });
 

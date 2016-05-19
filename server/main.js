@@ -19,6 +19,16 @@ Factory.define('message', Messages, {
     channel: 'general'
 });
 
+Factory.define('post', Posts, {
+    text: function() {
+        return Fake.sentence();
+    },
+    u: Meteor.users.findOne()._id,
+    timestamp: Date.now()
+});
+
+
+
 });
 
 idFromUsername = function(username){

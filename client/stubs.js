@@ -11,8 +11,12 @@ Meteor.methods({
     channel.u3 = idFromUsername(channel.u3);
     channel.s = false;
     channel.u = 1
-    debugger;
     Channels.insert(channel);
   },
-  
+  newPost: function (post) {
+    post.timestamp = Date.now();
+    post.u = Meteor.userId();
+    post.s = false;
+    Posts.insert(post);
+  }  
 });

@@ -13,8 +13,12 @@ Router.route('/channels/:channel', function () {
    this.render('messages');
 });
 
-Router.route("/create/",{
+Router.route("/channel/create/",{
     name:"createchannel"
+});
+
+Router.route("/post/create/",{
+    name:"createpost"
 });
 Router.route("/search/",{
     name:"search"

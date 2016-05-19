@@ -1516,7 +1516,7 @@ button,
   width: 375px;
   height: 100%;
   color: #d0021b;
-  background: #fff url("images/overlay.png");
+  background: #fff;
   text-align: right; }
   #header .top {
     position: absolute;

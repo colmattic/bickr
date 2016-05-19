@@ -504,10 +504,11 @@ $color2:d8d8d8;
 		width: 375px;
 		height: 100%;
 		color: $color1;
-		background: #fff url('images/overlay.png');
+		background: #fff;
 		
 		text-align: right;
 
+		
 		.top {
 			position: absolute;
 			left: 0;
