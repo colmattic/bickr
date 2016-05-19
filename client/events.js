@@ -93,16 +93,104 @@ Template.createpost.events({'submit .new-post': function (e) {
     
     //make string lower
     var text = target.text.value;
-
+    var name = text.toLowerCase();
+    name = name.replace(/\s/g, '');
     
     var post = {
       'text':text,
+      'name':name,
       'p':target.p.value
     };
 
     Meteor.call('newPost',post);
-  debugger;
     // Clear form
     target.text.value = '';
   },
+});
+
+
+Template.post.events({'click a.followpost': function (e) {
+    // Prevent default browser form submit
+    e.preventDefault();
+   
+    // Get value from form element
+    const target = e.target;
+    
+    var name = target.attributes[3].nodeValue;
+
+    var follow = {
+      'name':name,
+      'type':'p'
+    };
+
+    Meteor.call('newFollow',follow);
+  
+  }
+});
+
+Template.users.events({'click a.followuser': function (e) {
+    // Prevent default browser form submit
+    e.preventDefault();
+   
+    // Get value from form element
+    const target = e.target;
+    
+    var name = target.attributes[3].nodeValue;
+
+    var follow = {
+      'name':name,
+      'type':'u'
+    };
+
+    Meteor.call('newFollow',follow);
+  
+  }
+});
+
+Template.messages.events({'click a.followchannel': function (e) {
+    // Prevent default browser form submit
+    e.preventDefault();
+   
+    // Get value from form element
+    const target = e.target;
+    
+    var name = target.attributes[3].nodeValue;
+
+    var follow = {
+      'name':name,
+      'type':'c'
+    };
+
+    Meteor.call('newFollow',follow);
+  
+  }
+});
+
+Template.messages.events({'click a.vote-up': function (e) {
+    // Prevent default browser form submit
+    e.preventDefault();
+   
+    // Get value from form element
+    const target = e.target;
+    
+    var vote = {
+      'up':1,
+    };
+
+    Meteor.call('newVote',vote);
+  
+  }
+});
+Template.messages.events({'click a.vote-down': function (e) {
+    // Prevent default browser form submit
+    e.preventDefault();
+   
+    // Get value from form element
+    const target = e.target;
+    var vote = {
+      'down':0,
+    };
+    Meteor.call('newVote',vote);
+  
+  }
 });

@@ -9,7 +9,7 @@ Router.route('/', function () {
 });
 
 Router.route('/channels/:channel', function () {
-    Session.set('channel', this.params.channel);
+  Session.set('channel', this.params.channel);
    this.render('messages');
 });
 

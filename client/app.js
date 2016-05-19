@@ -1,10 +1,19 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
+Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_AND_EMAIL'
+});
+
+
 
 Meteor.subscribe('messages');
 Meteor.subscribe('channels' , Meteor.userId());
 Meteor.subscribe('posts' , Meteor.userId());
+Meteor.subscribe('follows' , Meteor.userId());
+Meteor.subscribe('allUsernames');
+
+
 Messages.allow({
   insert: function (userId, doc) {
     return (userId && doc.user === userId);
@@ -17,22 +26,27 @@ Posts.allow({
   }
 });
 
-Posts.before.insert(function (userId, doc) {
-  doc.timestamp = Date.now();
+Follows.allow({
+  insert: function (userId, doc) {
+    return (userId && doc.user === userId);
+  }
 });
-
 
 Messages.before.insert(function (userId, doc) {
   doc.timestamp = Date.now();
 });
-Template.messages.helpers({
-  messages: Messages.find({})
+
+Posts.before.insert(function (userId, doc) {
+  doc.timestamp = Date.now();
 });
 
-Meteor.subscribe('allUsernames');
+Posts.after.insert(function (userId, doc) {
+  alert('following');
+});
 
-Accounts.ui.config({
-    passwordSignupFields: 'USERNAME_AND_EMAIL'
+
+Template.messages.helpers({
+  messages: Messages.find({})
 });
 
 Template.registerHelper("usernameFromId", function (userId) {
@@ -74,7 +88,6 @@ Template.posts.helpers({
         return Posts.find({ u: Meteor.userId() });
     }
 });
-
 
 Template.channel.helpers({
     active: function () {
@@ -142,6 +155,23 @@ idFromUsername = function(username){
     return user._id;
 };
 
+idFollowFromName = function(follow){
+    
+    var result
+    
+    switch(follow.type) {
+    case 'u':
+        result = Meteor.users.findOne({username: follow.name });
+        break;
+    case 'c':
+        result = Channels.findOne({subject: follow.name});
+        break;
+    case 'p':
+        result = Posts.findOne({name: follow.name});
+        break;
+    }
+    return result._id;
+};
 
 
 

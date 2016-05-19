@@ -18,5 +18,22 @@ Meteor.methods({
     post.u = Meteor.userId();
     post.s = false;
     Posts.insert(post);
+  },
+  newFollow: function (follow) {
+    follow.timestamp = Date.now();
+    follow.u = Meteor.userId();
+    follow.fid = idFollowFromName(follow);
+    delete follow.name;
+    Follows.insert(follow);
+  },
+  newVote: function (vote) {
+    vote.timestamp = Date.now();
+    vote.u = Meteor.userId();
+    //vote.fid = idMessageFromName(vote);
+    //delete vote.name;
+    
+    Votes.insert(follow);
+    Messages.update();
+    Channels.update();
   }
 })

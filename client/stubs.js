@@ -18,5 +18,12 @@ Meteor.methods({
     post.u = Meteor.userId();
     post.s = false;
     Posts.insert(post);
-  }  
+  },
+  newFollow: function (follow) {
+    follow.timestamp = Date.now();
+    follow.u = Meteor.userId();
+    follow.fid = idFollowFromName(follow);
+    delete follow.name;
+    Follows.insert(follow);
+  }
 });

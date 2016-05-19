@@ -20,6 +20,10 @@ Meteor.publish('channels', function(userId) {
     return Channels.find({ u1: userId });
 });
 
+Meteor.publish('follow', function(userId) {
+    return Follows.find({ u: userId });
+});
+
 Meteor.publish('posts', function(userId) {
     return Posts.find({ u1: userId });
 });

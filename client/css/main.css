@@ -5,7 +5,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 /* Reset */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, leftpanel, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -13,7 +13,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font: inherit;
   vertical-align: baseline; }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article, aside, details, figcaption, figure, footer, leftpanel, hgroup, menu, nav, section {
   display: block; }
 
 body {
@@ -1235,9 +1235,9 @@ h2 {
 h3 {
   font-size: 1.5em; }
 
-header {
+leftpanel {
   margin: 0 0 2em 0; }
-  header > p {
+  leftpanel > p {
     margin: 1em 0 0 0; }
 
 footer {
@@ -1458,12 +1458,12 @@ button,
 .item {
   box-shadow: 0 0.05em 0.15em 0 rgba(0, 0, 0, 0.05);
   margin-bottom: 40px; }
-  .item header {
+  .item leftpanel {
     background: #fff;
     margin: 0;
     padding: 1em 0 1em 0;
     font-size: 0.8em; }
-    .item header h3 {
+    .item leftpanel h3 {
       font-size: 1em; }
 
 /* Icons */
@@ -1508,8 +1508,19 @@ button,
   height: 200px;
   width: 100%; }
 
-/* Header */
+/* header */
 #header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  color: #d0021b;
+  background: #d0021b;
+  text-align: right; }
+
+/* leftpanel */
+#leftpanel {
   position: fixed;
   top: 0;
   left: 0;
@@ -1518,27 +1529,27 @@ button,
   color: #d0021b;
   background: #fff;
   text-align: right; }
-  #header .top {
+  #leftpanel .top {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%; }
-  #header .bottom {
+  #leftpanel .bottom {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%; }
-  #header .icons {
+  #leftpanel .icons {
     font-size: 0.8em;
     margin: 0 0 1em 0;
     text-align: center; }
-    #header .icons a {
+    #leftpanel .icons a {
       color: #d0021b;
       -moz-transition: color 0.35s ease-in-out;
       -webkit-transition: color 0.35s ease-in-out;
       -ms-transition: color 0.35s ease-in-out;
       transition: color 0.35s ease-in-out; }
-      #header .icons a:hover {
+      #leftpanel .icons a:hover {
         color: #41484c; }
 
 #loggedin_user {
@@ -1571,6 +1582,8 @@ button,
   text-decoration: none;
   outline: 0;
   border: 0;
+  color: #d0021b !important;
+  background-color: #fff !important;
   -moz-transition: none;
   -webkit-transition: none;
   -ms-transition: none;
@@ -1657,8 +1670,8 @@ button,
   body, input, textarea, select {
     font-size: 17pt; }
 
-  /* Header */
-  #header {
+  /* leftpanel */
+  #leftpanel {
     width: 300px; }
 
   /* Footer */
@@ -1692,8 +1705,8 @@ button,
   .item {
     margin-bottom: 20px; }
 
-  /* Header */
-  #header {
+  /* leftpanel */
+  #leftpanel {
     width: 20%; }
 
   #loggedin_user .image {
@@ -1719,7 +1732,7 @@ button,
   #main {
     margin-left: 20%; } }
 /* Narrower */
-#headerToggle {
+#leftpanelToggle {
   display: none; }
 
 @media screen and (max-width: 960px) {
@@ -1730,7 +1743,7 @@ button,
   body, input, textarea, select {
     font-size: 16pt; }
 
-  header br {
+  leftpanel br {
     display: none; }
 
   .container {
@@ -1745,8 +1758,8 @@ button,
     width: 1.75em;
     font-size: 1.25em; }
 
-  /* Header */
-  #header {
+  /* leftpanel */
+  #leftpanel {
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -1770,9 +1783,9 @@ button,
     width: 275px;
     background: #fff url("images/overlay.png");
     box-shadow: inset -0.25em 0 0.25em 0 rgba(0, 0, 0, 0.125); }
-    #header .top {
+    #leftpanel .top {
       position: relative; }
-    #header .bottom {
+    #leftpanel .bottom {
       border-top: solid 1px rgba(255, 255, 255, 0.05);
       box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.15);
       padding-top: 2em;
@@ -1785,7 +1798,7 @@ button,
   #nav ul li a {
     padding: 0.5em 1.25em 0.5em 1.25em; }
 
-  #headerToggle {
+  #leftpanelToggle {
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -1801,7 +1814,7 @@ button,
     top: 0;
     width: 3.25em;
     z-index: 10001; }
-    #headerToggle .toggle {
+    #leftpanelToggle .toggle {
       position: absolute;
       left: 0;
       top: 0;
@@ -1809,7 +1822,7 @@ button,
       height: 100%;
       outline: 0;
       border: 0; }
-      #headerToggle .toggle:before {
+      #leftpanelToggle .toggle:before {
         font-family: FontAwesome;
         text-decoration: none;
         font-style: normal;
@@ -1831,17 +1844,17 @@ button,
         height: 2.25em;
         line-height: 2.25em; }
 
-  body.header-visible #main {
+  body.leftpanel-visible #main {
     -moz-transform: translateX(275px);
     -webkit-transform: translateX(275px);
     -ms-transform: translateX(275px);
     transform: translateX(275px); }
-  body.header-visible #headerToggle {
+  body.leftpanel-visible #leftpanelToggle {
     -moz-transform: translateX(275px);
     -webkit-transform: translateX(275px);
     -ms-transform: translateX(275px);
     transform: translateX(275px); }
-  body.header-visible #header {
+  body.leftpanel-visible #leftpanel {
     -moz-transform: translateX(0);
     -webkit-transform: translateX(0);
     -ms-transform: translateX(0);
@@ -1891,7 +1904,7 @@ button,
     padding: 2em 0; }
   #main section.cover {
     padding: 4em 0em; }
-    #main section.cover header {
+    #main section.cover leftpanel {
       padding: 0 1em; }
 
   /* Footer */

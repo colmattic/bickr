@@ -23,7 +23,10 @@ Factory.define('post', Posts, {
     text: function() {
         return Fake.sentence();
     },
-    u: Meteor.users.findOne()._id,
+    timestamp: Date.now()
+});
+
+Factory.define('follow', Follows, {
     timestamp: Date.now()
 });
 
@@ -42,4 +45,22 @@ idFromUsername = function(username){
     }
     
     return user._id;
+};
+
+idFollowFromName = function(follow){
+    
+    var result
+    
+    switch(follow.type) {
+    case 'u':
+        result = Meteor.users.findOne({username: follow.name});
+        break;
+    case 'c':
+        result = Channels.findOne({subject: follow.name});
+        break;
+    case 'p':
+        result = Posts.findOne({name: follow.name});
+        break;
+    }
+    return result._id;
 };

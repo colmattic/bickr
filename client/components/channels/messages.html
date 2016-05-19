@@ -6,9 +6,10 @@
 	<div class="message-u2" style="float: right;">{{>loggedin_user}} </div>
 	</div>
     <div class="message-history" style="clear: both;">
+
         {{#if Template.subscriptionsReady}}
 		    {{#each messages}}
-		        {{> message text=text timestamp=timestamp user=user }}
+		        {{> message text=text timestamp=timestamp user=user channel=channel }}
 		    {{/each}}
 		{{else}}
 		    Loading…

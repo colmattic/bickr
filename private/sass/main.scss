@@ -115,7 +115,7 @@ $color2:d8d8d8;
 		font-size: 1.5em;
 	}
 
-	header {
+	leftpanel {
 		margin: 0 0 2em 0;
 
 		> p {
@@ -428,7 +428,7 @@ $color2:d8d8d8;
 		box-shadow: 0 0.05em 0.15em 0 rgba(0, 0, 0, 0.05);
 		margin-bottom: 40px;
 
-		header {
+		leftpanel {
 			background: #fff;
 			margin: 0;
 			padding: 1em 0 1em 0;
@@ -494,10 +494,24 @@ $color2:d8d8d8;
 		width: 100%;
 	}
 
-
-/* Header */
+/* header */
 
 	#header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height:40px;
+		color: $color1;
+		background: $color1;
+		text-align: right;
+
+	}
+
+
+/* leftpanel */
+
+	#leftpanel {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -579,6 +593,8 @@ $color2:d8d8d8;
 					text-decoration: none;
 					outline: 0;
 					border: 0;
+					color:  $color1 !important;
+					background-color: #fff !important;
 					@include vendor('transition', 'none');
 
 					span {
@@ -710,9 +726,9 @@ $color2:d8d8d8;
 				font-size: 17pt;
 			}
 
-		/* Header */
+		/* leftpanel */
 
-			#header {
+			#leftpanel {
 				width: 300px;
 			}
 
@@ -782,9 +798,9 @@ $color2:d8d8d8;
 				margin-bottom: 20px;
 			}
 
-		/* Header */
+		/* leftpanel */
 
-			#header {
+			#leftpanel {
 				width: 20%;
 			}
 
@@ -833,7 +849,7 @@ $color2:d8d8d8;
 
 /* Narrower */
 
-	#headerToggle {
+	#leftpanelToggle {
 		display: none;
 	}
 
@@ -849,7 +865,7 @@ $color2:d8d8d8;
 				font-size: 16pt;
 			}
 
-			header {
+			leftpanel {
 				br {
 					display: none;
 				}
@@ -876,21 +892,21 @@ $color2:d8d8d8;
 				}
 			}
 
-		/* Header */
+		/* leftpanel */
 
-			#header {
+			#leftpanel {
 				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transform', 'translateX(#{_size(header) * -1})');
-				@include vendor('transition', ('transform #{_duration(header)} ease'));
+				@include vendor('transform', 'translateX(#{_size(leftpanel) * -1})');
+				@include vendor('transition', ('transform #{_duration(leftpanel)} ease'));
 				display: block;
 				height: 100%;
 				left: 0;
 				overflow-y: auto;
 				position: fixed;
 				top: 0;
-				width: _size(header);
+				width: _size(leftpanel);
 				z-index: _misc(z-index-base) + 2;
-				width: _size(header);
+				width: _size(leftpanel);
 				background: #fff url('images/overlay.png');
 				box-shadow: inset -0.25em 0 0.25em 0 rgba(0, 0, 0, 0.125);
 
@@ -921,9 +937,9 @@ $color2:d8d8d8;
 				}
 			}
 
-			#headerToggle {
+			#leftpanelToggle {
 				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transition', 'transform #{_duration(header)} ease');
+				@include vendor('transition', 'transform #{_duration(leftpanel)} ease');
 				display: block;
 				height: 2.25em;
 				left: 0;
@@ -967,16 +983,16 @@ $color2:d8d8d8;
 			}
 
 			body {
-				&.header-visible {
+				&.leftpanel-visible {
 					#main {
-						@include vendor('transform', 'translateX(#{_size(header)})');
+						@include vendor('transform', 'translateX(#{_size(leftpanel)})');
 					}
 
-					#headerToggle {
-						@include vendor('transform', 'translateX(#{_size(header)})');
+					#leftpanelToggle {
+						@include vendor('transform', 'translateX(#{_size(leftpanel)})');
 					}
 
-					#header {
+					#leftpanel {
 						@include vendor('transform', 'translateX(0)');
 					}
 				}
@@ -992,7 +1008,7 @@ $color2:d8d8d8;
 
 			#main {
 				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transition', 'transform #{_duration(header)} ease');
+				@include vendor('transition', 'transform #{_duration(leftpanel)} ease');
 				padding-bottom: 1px;
 				margin-left: 0;
 
@@ -1050,7 +1066,7 @@ $color2:d8d8d8;
 					&.cover {
 						padding: 4em 0em;
 
-						header {
+						leftpanel {
 							padding: 0 1em;
 						}
 					}
