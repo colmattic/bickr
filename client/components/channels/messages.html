@@ -1,21 +1,30 @@
 <template name="messages">
 	
-	<div style="clear: both;">
-	<h1>Arena</h1>
-	<div class="message-u1" style="float: left;">{{>loggedin_user}} </div>
-	<div class="message-u2" style="float: right;">{{>loggedin_user}} </div>
+	<div id="arena">
+	<h1>#{{channel.subject}}</h1>
+	<div id="players">
+	<div class="player_user message-u1">{{> user user=channel.obju1}} </div>
+	<div class="player_user message-u2">{{> user user=channel.obju2}}</div>
 	</div>
-    <div class="message-history" style="clear: both;">
-
+    
         {{#if Template.subscriptionsReady}}
+        	<div class="message-history" style="height: 350px; overflow: scroll;">
 		    {{#each messages}}
-		        {{> message text=text timestamp=timestamp user=user channel=channel }}
+		        {{> message text=text timestamp=timestamp user=user  }}
 		    {{/each}}
+		    </div>
+		    {{#if equals currentUser._id channel.turn}}
+		    <div class="input-box" id="send-message">
+		            <input type="text" class="input-box_text" placeholder="Send a fucking message, its your turn. Fool.">
+		    </div>
+		    {{else}}
+		    <div class="notyourturn" id="">
+		    It's not your turn! Dumbass!
+		    </div>
+		    {{/if}}
 		{{else}}
 		    Loading…
 		{{/if}}
     </div>
-    <div class="input-box" id="send-message">
-            <input type="text" class="input-box_text" placeholder="Send a fucking message, its your turn. Fool.">
-    </div>
+    
 </template>

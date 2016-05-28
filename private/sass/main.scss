@@ -469,10 +469,10 @@ $color2:d8d8d8;
 		text-decoration: none;
 		color: #fff;
 		background-color:$color1;
-		padding: 2em;
-		margin: 1em;
+		
 		display: block;
 		font-size: 1.25em;
+		position:relative;
 	}
 	.message a
 	{
@@ -480,6 +480,29 @@ $color2:d8d8d8;
 		color: #fff !important;
 	
 	}
+	.message_info{
+		position:absolute;
+		padding-left: 0.5em;
+		top:0;
+		left:0;
+	}
+	.message_vote{
+		position:absolute;
+		bottom:0;
+		right:0;
+		padding-right: 0.5em;
+
+	}
+	.message_content {
+	text-align:left;
+	width:100%;
+	padding: 2em 0;
+	padding-left: 0.5em;
+	margin: 1em 0;
+
+	}
+	 
+
 
 	#send-message {
 		position: fixed;
@@ -499,7 +522,7 @@ $color2:d8d8d8;
 	#header {
 		position: fixed;
 		top: 0;
-		left: 0;
+		left: 0px;
 		width: 100%;
 		height:40px;
 		color: $color1;
@@ -526,7 +549,7 @@ $color2:d8d8d8;
 		.top {
 			position: absolute;
 			left: 0;
-			top: 0;
+			top: 50px;
 			width: 100%;
 		}
 
@@ -553,16 +576,40 @@ $color2:d8d8d8;
 		}
 	}
 
+	#arena {
+	position: relative;
+	}
 	#loggedin_user {
+	float:right;
+	padding: 1em 0;
+	}
+	#players {
+	position: relative;
+	height: 100px;
+	}
+	.player_user.message-u1{
+		position: absolute;
+		left: 0;
+			top: 0;
+	}
+	.player_user.message-u2{
+		position: absolute;
+		right: 0;
+			top: 0;
+	}
+	#loggedin_user .user, .player_user .user {
+		width:200px;
 		position: relative;
-		margin: 1.75em 1.5em 1.5em 1.5em;
+		
 		min-height: 48px;
 		cursor: default;
-
+		
 		h1 {
-			position: relative;
+			position: absolute;
+			right:0;
+			top: 0;
 			color: $color1;
-			font-weight: 600;
+			
 			font-size: 1em;
 			line-height: 1em;
 		}
@@ -580,6 +627,16 @@ $color2:d8d8d8;
 			position: absolute;
 			left: 0;
 			top: 0;
+		}
+
+		.follow_user{
+			position: absolute;
+			right:0;
+			color: $color1;
+			font-weight: 600;
+			font-size: 1em;
+			line-height: 1em;
+			bottom: 0;
 		}
 	}
 
@@ -804,7 +861,7 @@ $color2:d8d8d8;
 				width: 20%;
 			}
 
-			#loggedin_user {
+			#loggedin_user .user, .player_user .user {
 				.image {
 					position: relative;
 					margin: 0 0 0.5em 0;
@@ -923,7 +980,7 @@ $color2:d8d8d8;
 				}
 			}
 
-			#loggedin_user {
+			#loggedin_user .user, .player_user .user {
 				margin: 1.5em 1.25em 1.25em 1.25em;
 			}
 

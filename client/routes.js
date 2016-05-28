@@ -8,12 +8,19 @@ Router.route('/', function () {
   }
 });
 
-Router.route('/channels/:channel', function () {
+Router.route('/arenas/:channel', function () {
+    
   Session.set('channel', this.params.channel);
-   this.render('messages');
+  this.render('messages');
+  
+  
 });
 
-Router.route("/channel/create/",{
+Router.route("/arenas/",{
+    name:"channels"
+});
+
+Router.route("/arena/create/",{
     name:"createchannel"
 });
 

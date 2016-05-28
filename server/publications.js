@@ -17,7 +17,7 @@ Meteor.publish("allUsernames", function() {
 });
 
 Meteor.publish('channels', function(userId) {
-    return Channels.find({ u1: userId });
+    return Channels.find({$or: [{'u1': userId},{'u2': userId}]});
 });
 
 Meteor.publish('follow', function(userId) {

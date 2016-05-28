@@ -1,12 +1,17 @@
 <template name="message">
     <div class="message">
-        <a href="" class="message_profile-pic"></a>
-        <a href="" class="message_username">{{usernameFromId user}}</a>
-        <span class="message_timestamp">{{timestampToTime timestamp}}</span>
-        <span class="message_star"></span>
-        <span class="message_content">{{text}}</span>
-        <a href="#" class="vote-up" ><i class="fa fa-long-arrow-up"></i>Up</a>
-        <a href="#" class="vote-down" ><i class="fa fa-long-arrow-down"></i>Down</a>
-        <a href="#" id="" class="followchannel" data-name="{{channel}}" >Follow arena ></a>
+        <div class="message_info">
+        <span class="message_timestamp">{{timestampToTime timestamp}}</span> - <a href="" class="message_username">{{usernameFromId user}}</a> 
+        
+        </div>
+        
+        <div class="message_content">{{text}}</div>
+        <div class="message_vote">
+        <i class="fa fa-fire" aria-hidden="true"></i>
+        <a href="#" class="vote_up" ><i class="fa fa-arrow-up" aria-hidden="true"></i></a><span class="vote_up_score">100</span>
+        <a href="#" class="vote_down" ><i class="fa fa-arrow-down" aria-hidden="true"></i></a><span class="vote_down_score">10</span>
+        <a href="#" id="" class="follow_channel" data-name="{{channel}}" ><i class="fa fa-plus" aria-hidden="true"></i></a>
+        </div>
+        
     </div>
 </template>

@@ -1488,13 +1488,31 @@ button,
   text-decoration: none;
   color: #fff;
   background-color: #d0021b;
-  padding: 2em;
-  margin: 1em;
   display: block;
-  font-size: 1.25em; }
+  font-size: 1.25em;
+  position: relative; }
 
 .message a {
   color: #fff !important; }
+
+.message_info {
+  position: absolute;
+  padding-left: 0.5em;
+  top: 0;
+  left: 0; }
+
+.message_vote {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-right: 0.5em; }
+
+.message_content {
+  text-align: left;
+  width: 100%;
+  padding: 2em 0;
+  padding-left: 0.5em;
+  margin: 1em 0; }
 
 #send-message {
   position: fixed;
@@ -1512,7 +1530,7 @@ button,
 #header {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 0px;
   width: 100%;
   height: 40px;
   color: #d0021b;
@@ -1532,7 +1550,7 @@ button,
   #leftpanel .top {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50px;
     width: 100%; }
   #leftpanel .bottom {
     position: absolute;
@@ -1552,28 +1570,58 @@ button,
       #leftpanel .icons a:hover {
         color: #41484c; }
 
+#arena {
+  position: relative; }
+
 #loggedin_user {
+  float: right;
+  padding: 1em 0; }
+
+#players {
   position: relative;
-  margin: 1.75em 1.5em 1.5em 1.5em;
+  height: 100px; }
+
+.player_user.message-u1 {
+  position: absolute;
+  left: 0;
+  top: 0; }
+
+.player_user.message-u2 {
+  position: absolute;
+  right: 0;
+  top: 0; }
+
+#loggedin_user .user, .player_user .user {
+  width: 200px;
+  position: relative;
   min-height: 48px;
   cursor: default; }
-  #loggedin_user h1 {
-    position: relative;
+  #loggedin_user .user h1, .player_user .user h1 {
+    position: absolute;
+    right: 0;
+    top: 0;
     color: #d0021b;
-    font-weight: 600;
     font-size: 1em;
     line-height: 1em; }
-  #loggedin_user p {
+  #loggedin_user .user p, .player_user .user p {
     position: relative;
     display: block;
     font-size: 0.6em;
     color: #d0021b;
     line-height: 1.25em;
     margin: 0.5em 0 0 0; }
-  #loggedin_user .image {
+  #loggedin_user .user .image, .player_user .user .image {
     position: absolute;
     left: 0;
     top: 0; }
+  #loggedin_user .user .follow_user, .player_user .user .follow_user {
+    position: absolute;
+    right: 0;
+    color: #d0021b;
+    font-weight: 600;
+    font-size: 1em;
+    line-height: 1em;
+    bottom: 0; }
 
 #nav ul li a {
   display: block;
@@ -1709,7 +1757,7 @@ button,
   #leftpanel {
     width: 20%; }
 
-  #loggedin_user .image {
+  #loggedin_user .user .image, .player_user .user .image {
     position: relative;
     margin: 0 0 0.5em 0; }
 
@@ -1792,7 +1840,7 @@ button,
       margin-top: 1em;
       position: relative; }
 
-  #loggedin_user {
+  #loggedin_user .user, .player_user .user {
     margin: 1.5em 1.25em 1.25em 1.25em; }
 
   #nav ul li a {

@@ -49,11 +49,14 @@ Template.createchannel.events({'submit .new-channel': function (e) {
     subject = subject.replace(/\s/g, '');
     subject = subject.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g,"");
     
+    var p = $("#p").is(":checked") ? true : false;
+
+
     var channel = {
       'subject':subject,
       'u2':target.u2.value,
       'u3':target.u3.value,
-      'p':target.p.value
+      'p':p
     };
 
     Meteor.call('newChannel',channel);
@@ -99,7 +102,8 @@ Template.createpost.events({'submit .new-post': function (e) {
     var post = {
       'text':text,
       'name':name,
-      'p':target.p.value
+      'p':target.p.value,
+      'type':'p'
     };
 
     Meteor.call('newPost',post);
@@ -147,7 +151,7 @@ Template.users.events({'click a.followuser': function (e) {
   }
 });
 
-Template.messages.events({'click a.followchannel': function (e) {
+Template.messages.events({'click a.follow_channel': function (e) {
     // Prevent default browser form submit
     e.preventDefault();
    
@@ -166,7 +170,7 @@ Template.messages.events({'click a.followchannel': function (e) {
   }
 });
 
-Template.messages.events({'click a.vote-up': function (e) {
+Template.messages.events({'click a.vote_up': function (e) {
     // Prevent default browser form submit
     e.preventDefault();
    
@@ -181,7 +185,7 @@ Template.messages.events({'click a.vote-up': function (e) {
   
   }
 });
-Template.messages.events({'click a.vote-down': function (e) {
+Template.messages.events({'click a.vote_down': function (e) {
     // Prevent default browser form submit
     e.preventDefault();
    

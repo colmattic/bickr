@@ -8,17 +8,11 @@ Accounts.ui.config({
 
 
 Meteor.subscribe('messages');
-Meteor.subscribe('channels' , Meteor.userId());
+Meteor.subscribe('channels', Meteor.userId());
 Meteor.subscribe('posts' , Meteor.userId());
 Meteor.subscribe('follows' , Meteor.userId());
 Meteor.subscribe('allUsernames');
 
-
-Messages.allow({
-  insert: function (userId, doc) {
-    return (userId && doc.user === userId);
-  }
-});
 
 Posts.allow({
   insert: function (userId, doc) {
@@ -32,10 +26,6 @@ Follows.allow({
   }
 });
 
-Messages.before.insert(function (userId, doc) {
-  doc.timestamp = Date.now();
-});
-
 Posts.before.insert(function (userId, doc) {
   doc.timestamp = Date.now();
 });
@@ -45,9 +35,7 @@ Posts.after.insert(function (userId, doc) {
 });
 
 
-Template.messages.helpers({
-  messages: Messages.find({})
-});
+//helpers
 
 Template.registerHelper("usernameFromId", function (userId) {
 
@@ -65,7 +53,9 @@ Template.registerHelper("usernameFromId", function (userId) {
     return user.username;
 });
 
-
+ Template.registerHelper('equals', function (a, b) {
+      return a === b;
+    });
 
 Template.registerHelper("timestampToTime", function (timestamp) {
     var date = new Date(timestamp);
@@ -75,20 +65,13 @@ Template.registerHelper("timestampToTime", function (timestamp) {
     return hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
 });
 
+
 Template.channels.helpers({
     channels: function () {
         
-        return Channels.find({ u1: Meteor.userId() });
+        return Channels.find({$or: [{'u1': Meteor.userId()},{'u2': Meteor.userId()}]});
     }
 });
-
-Template.posts.helpers({
-    posts: function () {
-        
-        return Posts.find({ u: Meteor.userId() });
-    }
-});
-
 Template.channel.helpers({
     active: function () {
         if (Session.get('channel') === this.name) {
@@ -99,6 +82,22 @@ Template.channel.helpers({
     }
 });
 
+Template.posts.helpers({
+    posts: function () {
+        
+        return Posts.find({ u: Meteor.userId() });
+    }
+});
+
+Template.messages.helpers({
+  messages: Messages.find({}),
+  channel: function(){
+    var channel = Channels.findOne({subject: Session.get('channel')});
+    channel.obju1 = getUserObj(channel.u1);
+    channel.obju2 = getUserObj(channel.u2);
+    return channel;
+  }
+});
 Template.messages.onCreated(function() {
   var self = this;
   self.autorun(function() {
@@ -142,6 +141,37 @@ Template.user3.helpers({
     }
 });
 
+//functions
+isChannelPrivate = function(subject){
+    
+    var channel = Channels.find({subject: subject});
+    return channel.p;
+    
+};
+
+whosTurnNext = function(subject, userId){
+    
+    var channel = Channels.find({subject: subject});
+    if(channel.u1 == userId){
+      return channel.u2;
+    }
+    else if(channel.u2 == userId){
+      return channel.u1;
+    }   
+};
+
+whosTurnNow = function(subject){
+    
+    var channel = Channels.findOne({subject: subject});
+    return channel.turn;
+     
+};
+
+idFromSubject= function(subject){   
+    var channel = Channels.findOne({subject: subject});
+    return channel._id;
+};
+
 idFromUsername = function(username){
     
     var user = Meteor.users.findOne({username: username});
@@ -153,6 +183,11 @@ idFromUsername = function(username){
     }
 
     return user._id;
+};
+
+getUserObj = function(userid){
+    var user = Meteor.users.findOne({_id: userid });
+    return user;
 };
 
 idFollowFromName = function(follow){

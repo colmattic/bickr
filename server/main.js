@@ -34,6 +34,35 @@ Factory.define('follow', Follows, {
 
 });
 
+isChannelPrivate = function(subject){
+    
+    var channel = Channels.findOne({subject: subject});
+    return channel.p;
+    
+};
+whosTurnNext = function(subject, userId){
+    
+    var channel = Channels.findOne({subject: subject});
+    if(channel.u1 == userId){
+      return channel.u2;
+    }
+    else if(channel.u2 == userId){
+      return channel.u1;
+    }   
+};
+
+whosTurnNow = function(subject){
+    
+    var channel = Channels.findOne({subject: subject});
+    return channel.turn;
+     
+};
+
+idFromSubject= function(subject){   
+    var channel = Channels.findOne({subject: subject});
+    return channel._id;
+};
+
 idFromUsername = function(username){
     
     var user = Meteor.users.findOne({username: username});
