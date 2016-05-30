@@ -1,15 +1,22 @@
 <template name="message">
-    <div class="message">
+    <div class="message" id="{{id}}">
         <div class="message_info">
         <span class="message_timestamp">{{timestampToTime timestamp}}</span> - <a href="" class="message_username">{{usernameFromId user}}</a> 
         
         </div>
         
-        <div class="message_content">{{text}}</div>
-        <div class="message_vote">
-        <i class="fa fa-fire" aria-hidden="true"></i>
-        <a href="#" class="vote_up" ><i class="fa fa-arrow-up" aria-hidden="true"></i></a><span class="vote_up_score">100</span>
-        <a href="#" class="vote_down" ><i class="fa fa-arrow-down" aria-hidden="true"></i></a><span class="vote_down_score">10</span>
+        <div class="message_content">{{{doEmojie text}}}</div>
+        <div class="message_vote"><i class="fa fa-fire" aria-hidden="true"></i>
+        {{#if hasvoted id}} 
+        <i class="fa fa-arrow-up" aria-hidden="true"></i><span class="vote_up_score">{{getvotes id 'up'}}</span>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i><span class="vote_down_score">{{getvotes id 'down'}}</span>
+        {{else}}
+        <a href="#" class="vote_up" data-message="{{id}}" data-channel="{{channelId}}" ><i class="fa fa-arrow-up" aria-hidden="true"></i></a><span class="vote_up_score">{{getvotes id 'up'}}</span>
+        <a href="#" class="vote_down" data-message="{{id}}" data-channel="{{channelId}}"><i class="fa fa-arrow-down" aria-hidden="true"></i></a><span class="vote_down_score">{{getvotes id 'down'}}</span>
+        {{/if}}
+
+
+
         <a href="#" id="" class="follow_channel" data-name="{{channel}}" ><i class="fa fa-plus" aria-hidden="true"></i></a>
         </div>
         

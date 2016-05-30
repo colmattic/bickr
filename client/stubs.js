@@ -46,5 +46,14 @@ Meteor.methods({
     follow.fid = idFollowFromName(follow);
     delete follow.name;
     Follows.insert(follow);
+  },
+  newVote: function (vote) {
+    vote.timestamp = Date.now();
+    vote.u = Meteor.userId();
+    vote.uid = userFromMessage(vote.message);
+    Votes.insert(vote);
+    // Channels.update(vote.channel, {
+    //   $set: { score: nextUserId },
+    // });
   }
 });

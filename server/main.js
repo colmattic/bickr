@@ -30,19 +30,23 @@ Factory.define('follow', Follows, {
     timestamp: Date.now()
 });
 
+Factory.define('votes', Votes, {
+});
+
 
 
 });
 
 isChannelPrivate = function(subject){
     
-    var channel = Channels.findOne({subject: subject});
+    var channel = Channels.find({subject: subject});
     return channel.p;
     
 };
+
 whosTurnNext = function(subject, userId){
     
-    var channel = Channels.findOne({subject: subject});
+    var channel = Channels.find({subject: subject});
     if(channel.u1 == userId){
       return channel.u2;
     }
@@ -72,8 +76,26 @@ idFromUsername = function(username){
     if (typeof user.services.github !== "undefined") {
         return user.services.github.username;
     }
-    
+
     return user._id;
+};
+
+usernameFromId = function(userid){
+    
+    var user = Meteor.users.findOne({_id: userid});
+    if (typeof user === "undefined") {
+        return "Anonymous";
+    }
+    if (typeof user.services.github !== "undefined") {
+        return user.services.github.username;
+    }
+
+    return user.username;
+};
+
+getUserObj = function(userid){
+    var user = Meteor.users.findOne({_id: userid });
+    return user;
 };
 
 idFollowFromName = function(follow){
@@ -82,7 +104,7 @@ idFollowFromName = function(follow){
     
     switch(follow.type) {
     case 'u':
-        result = Meteor.users.findOne({username: follow.name});
+        result = Meteor.users.findOne({username: follow.name });
         break;
     case 'c':
         result = Channels.findOne({subject: follow.name});
@@ -93,3 +115,61 @@ idFollowFromName = function(follow){
     }
     return result._id;
 };
+hasVoted = function(message){
+var result = Votes.find({'message':message,'u':Meteor.userId()});
+    if (result.count()) {
+      return true;
+    }
+    else{
+      return false;  
+    } 
+
+}
+
+getChannelScore = function(channel, userid){
+    
+    processed_data = []; 
+    var result =0;
+    Deps.autorun(function (c) {
+        
+        var cursor = Votes.find({'channel':channel});
+        if (!cursor.count()) return;
+
+        cursor.forEach(function (row) {
+            result+= parseInt(row.value);
+            processed_data.push(row.value);
+        }); 
+
+        c.stop();
+    }); 
+    return result;
+
+}
+getMessageScore = function(message,type){
+    
+    processed_data = []; 
+    var result =0;
+    Deps.autorun(function (c) {
+        console.log(message);
+        console.log(type)
+        var cursor = Votes.find({'message':message,'type':type});
+        if (!cursor.count()) return;
+
+        cursor.forEach(function (row) {
+            console.log(row.value);
+            result+= parseInt(row.value);
+            processed_data.push(row.value);
+        }); 
+
+        c.stop();
+    }); 
+
+
+    return result;
+
+}
+
+userFromMessage= function(message){
+  var result = Messages.find({'_id': message});
+  return result.user;
+}

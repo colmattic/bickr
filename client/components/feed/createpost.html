@@ -1,13 +1,7 @@
 <template name="createpost">
-      <h1>Create post</h1>
       <form class="new-post">
-      	<label for="text">Subject</label>
-        <input type="text" name="text" placeholder="Whats up...?" />
-        <label for="p">Private</label>
-        <input type="checkbox" name="p" />
-        <input type="submit" name="submit" value="Post" />
-
-      </form>
-      
-      
+        <input type="text" name="text" id="text" placeholder="Whats up...?" />
+        <a href="#" class="button new_post" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        {{> emojis}}
+      </form> 
 </template>

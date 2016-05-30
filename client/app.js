@@ -8,6 +8,7 @@ Accounts.ui.config({
 
 
 Meteor.subscribe('messages');
+Meteor.subscribe('votes');
 Meteor.subscribe('channels', Meteor.userId());
 Meteor.subscribe('posts' , Meteor.userId());
 Meteor.subscribe('follows' , Meteor.userId());
@@ -31,8 +32,18 @@ Posts.before.insert(function (userId, doc) {
 });
 
 Posts.after.insert(function (userId, doc) {
-  alert('following');
+  Router.go('/arenas/'+username+'/'+channel);
 });
+
+Channels.after.insert(function (userId, doc) {
+  var channel= doc.subject;
+  var username = usernameFromId(doc.u1);
+  Router.go('/arenas/'+username+'/'+channel);
+});
+
+// Votes.after.insert(function (obj,lastinsert) {
+//   var result = Template.message.__helpers.get('getvotes').call(this,lastinsert.message, lastinsert.type)
+// });
 
 
 //helpers
@@ -94,7 +105,9 @@ Template.messages.helpers({
   channel: function(){
     var channel = Channels.findOne({subject: Session.get('channel')});
     channel.obju1 = getUserObj(channel.u1);
+    channel.obju1.score = getChannelScore(channel._id, channel.u1);
     channel.obju2 = getUserObj(channel.u2);
+    channel.obju2.score = getChannelScore(channel._id, channel.u2);
     return channel;
   }
 });
@@ -103,6 +116,24 @@ Template.messages.onCreated(function() {
   self.autorun(function() {
     self.subscribe('messages', Session.get('channel'));
   });
+});
+
+Template.message.helpers({
+  getvotes: function(message,type){
+    return getMessageScore(message,type);
+  },
+  hasvoted: function(message){
+    return hasVoted(message);
+  },
+  doEmojie:function(text){
+    return doEmojie(Template.message,text);
+  }
+});
+
+Template.createchannel.helpers({
+  subject: function(message,type){
+    return Session.get('subject');
+  }
 });
 
 
@@ -185,6 +216,19 @@ idFromUsername = function(username){
     return user._id;
 };
 
+usernameFromId = function(userid){
+    
+    var user = Meteor.users.findOne({_id: userid});
+    if (typeof user === "undefined") {
+        return "Anonymous";
+    }
+    if (typeof user.services.github !== "undefined") {
+        return user.services.github.username;
+    }
+
+    return user.username;
+};
+
 getUserObj = function(userid){
     var user = Meteor.users.findOne({_id: userid });
     return user;
@@ -207,6 +251,72 @@ idFollowFromName = function(follow){
     }
     return result._id;
 };
+hasVoted = function(message){
+var result = Votes.find({'message':message,'u':Meteor.userId()});
+    if (result.count()) {
+      return true;
+    }
+    else{
+      return false;  
+    } 
+
+}
+
+getChannelScore = function(channel, userid){
+    
+    processed_data = []; 
+    var result =0;
+    Deps.autorun(function (c) {
+        
+        var cursor = Votes.find({'channel':channel});
+        if (!cursor.count()) return;
+
+        cursor.forEach(function (row) {
+            result+= parseInt(row.value);
+            processed_data.push(row.value);
+        }); 
+
+        c.stop();
+    }); 
+    return result;
+
+}
+getMessageScore = function(message,type){
+    
+    processed_data = []; 
+    var result =0;
+    Deps.autorun(function (c) {
+        console.log(message);
+        console.log(type)
+        var cursor = Votes.find({'message':message,'type':type});
+        if (!cursor.count()) return;
+
+        cursor.forEach(function (row) {
+            console.log(row.value);
+            result+= parseInt(row.value);
+            processed_data.push(row.value);
+        }); 
+
+        c.stop();
+    }); 
 
 
+    return result;
+
+}
+
+userFromMessage= function(message){
+  var result = Messages.find({'_id': message});
+  return result.user;
+}
+
+doEmojie = function (tmpl, data) {
+  data = data.replace(/(^|\W)(#[a-z\d][\w-]*)/ig, '<img class="emojie" src="/images/$2.jpg"/>');
+  data = replaceAll(data, '#','');
+  return data;
+}
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
 

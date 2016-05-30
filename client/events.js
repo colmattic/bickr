@@ -56,6 +56,7 @@ Template.createchannel.events({'submit .new-channel': function (e) {
       'subject':subject,
       'u2':target.u2.value,
       'u3':target.u3.value,
+      'l':target.l.value,
       'p':p
     };
 
@@ -84,7 +85,7 @@ Template.user3.events({
     }
   });
 
-Template.createpost.events({'submit .new-post': function (e) {
+Template.createpost.events({'click a.new_post': function (e) {
     // Prevent default browser form submit
     e.preventDefault();
  
@@ -95,14 +96,15 @@ Template.createpost.events({'submit .new-post': function (e) {
     // Insert a channel into the collection
     
     //make string lower
-    var text = target.text.value;
+    var text = $("#text").val();
+    var p = $("#p").val();
     var name = text.toLowerCase();
     name = name.replace(/\s/g, '');
     
     var post = {
       'text':text,
       'name':name,
-      'p':target.p.value,
+      'p':p,
       'type':'p'
     };
 
@@ -113,7 +115,7 @@ Template.createpost.events({'submit .new-post': function (e) {
 });
 
 
-Template.post.events({'click a.followpost': function (e) {
+Template.post.events({'click a.follow_post': function (e) {
     // Prevent default browser form submit
     e.preventDefault();
    
@@ -132,7 +134,7 @@ Template.post.events({'click a.followpost': function (e) {
   }
 });
 
-Template.users.events({'click a.followuser': function (e) {
+Template.users.events({'click a.follow_user': function (e) {
     // Prevent default browser form submit
     e.preventDefault();
    
@@ -175,14 +177,28 @@ Template.messages.events({'click a.vote_up': function (e) {
     e.preventDefault();
    
     // Get value from form element
-    const target = e.target;
-    
+    const target = e.currentTarget;
+    var message = target.attributes[2].nodeValue;
+    var channel = target.attributes[3].nodeValue;
     var vote = {
-      'up':1,
+      'value':1,
+      'type':'up',
+      'message': message,
+      'channel': channel
     };
 
-    Meteor.call('newVote',vote);
-  
+    if(!hasVoted(message)){
+      Meteor.call('newVote',vote);
+      var a = $( e.currentTarget )
+      var score_div = a.next();
+      var score = score_div.html();
+      score = parseInt(score);
+      score = score + 1;
+      score_div.html(score);
+      a.removeClass( "vote_down" ).addClass( "vote_down_done" );
+      $("#"+message).find(".vote_up").removeClass( "vote_up" ).addClass( "vote_up_done" );
+    }
+    
   }
 });
 Template.messages.events({'click a.vote_down': function (e) {
@@ -190,11 +206,40 @@ Template.messages.events({'click a.vote_down': function (e) {
     e.preventDefault();
    
     // Get value from form element
-    const target = e.target;
+    const target = e.currentTarget;
+    var message = target.attributes[2].nodeValue;
+    var channel = target.attributes[3].nodeValue;
     var vote = {
-      'down':0,
+      'value':1,
+      'type':'down',
+      'message': message,
+      'channel': channel
     };
-    Meteor.call('newVote',vote);
-  
+    if(!hasVoted(message)){
+      Meteor.call('newVote',vote);
+      var a = $( e.currentTarget )
+      var score_div = a.next();
+      var score = score_div.html();
+      score = parseInt(score);
+      score = score + 1;
+      score_div.html(score);
+      a.removeClass( "vote_down" ).addClass( "vote_down_done" );
+      $("#"+message).find(".vote_up").removeClass( "vote_up" ).addClass( "vote_up_done" );
+    }
+    
   }
 });
+
+Template.messages.events({'click a.emoji': function (e) {
+    // Prevent default browser form submit
+    e.preventDefault();
+   
+    // Get value from form element
+    const target = e.currentTarget;
+    var emoji = $( target ).html();
+    var currentText = $( "#input-box_text" ).val(); 
+    
+    $( "#input-box_text" ).val(currentText + ' ' + emoji);
+  }
+});
+

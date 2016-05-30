@@ -50,11 +50,9 @@ Meteor.methods({
   newVote: function (vote) {
     vote.timestamp = Date.now();
     vote.u = Meteor.userId();
-    //vote.fid = idMessageFromName(vote);
-    //delete vote.name;
-    
-    Votes.insert(follow);
-    Messages.update();
-    Channels.update();
+    vote.uid = userFromMessage(vote.message);
+    Votes.insert(vote);
+    // Messages.update();
+    // Channels.update();
   }
 })

@@ -8,9 +8,10 @@ Router.route('/', function () {
   }
 });
 
-Router.route('/arenas/:channel', function () {
+Router.route('/arenas/:username/:channel/', function () {
     
   Session.set('channel', this.params.channel);
+ 
   this.render('messages');
   
   
@@ -20,13 +21,12 @@ Router.route("/arenas/",{
     name:"channels"
 });
 
-Router.route("/arena/create/",{
-    name:"createchannel"
+Router.route("/arena/create/:_subject?",function(){
+
+    Session.set('subject', this.params._subject);
+    this.render('createchannel');
 });
 
-Router.route("/post/create/",{
-    name:"createpost"
-});
 Router.route("/search/",{
     name:"search"
 });
