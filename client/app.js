@@ -172,6 +172,17 @@ Template.user3.helpers({
     }
 });
 
+Template.friends.helpers ({
+getFriends: function(){
+   
+    var results = FacebookCollections.getFriends("me",["id","name"],100);
+
+    results = [{name:'sian oneil', id:123456}, {name:'shaun joffe', id:98766}];
+    return results;
+    
+}
+});
+
 //functions
 isChannelPrivate = function(subject){
     

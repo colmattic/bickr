@@ -1,0 +1,7 @@
+{
+  "galaxy.meteor.com": { 
+     "env": { 
+       "MONGO_URL": "mongodb://bickr:dmanpack14@ds153815.mlab.com:53815/bickr" 
+     } 
+   }
+}

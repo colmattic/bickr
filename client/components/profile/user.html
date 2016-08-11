@@ -1,23 +1,17 @@
 <template name="user">
 <div class="user">			
-			{{#if user.services.twitter}}
-				<a href="/profile/{{user.services.twitter.screenName}}">
-				<h1 id="title">{{user.services.twitter.screenName}}</h1>
+			
+				<a href="/profile/{{user.services.facebook.id}}">
+				<h1 id="title">{{user.services.facebook.name}}</h1>
 				<span class="image avatar48">
-				<img src="{{user.services.twitter.profile_image_url}}" alt="" />
+				<img src="" alt="" />
 				</span> 
 				<span class="connection_status"></span> 
+
 				</a>
-				<a href="#" id="" class="follow_user" data-name="{{user.services.twitter.screenName}}" ><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+				<a href="#" id="" class="follow_user" data-name="{{user.services.facebook.id}}" ><i class="fa fa-user-plus" aria-hidden="true"></i></a>
 				
-			{{else}}
-				<a href="/profile/{{user.username}}"><h1 id="title">{{user.username}}</h1>
-				<span class="image avatar48"><img src="/images/blank.jpg" alt="" />
-				<span class="connection_status"></span> 
-				</span>
-				</a>	
-				<a href="#" id="" class="follow_user" data-name="{{user.username}}" ><i class="fa fa-user-plus" aria-hidden="true"></i></a>
-			{{/if}}
+			
 							
 							
 </div>

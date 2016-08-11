@@ -1,6 +1,17 @@
 <template name="loginPage">
 		<div>
-                {{> loginButtons}}
+                
+    {{#if currentUser}}
+        {{currentUser.services.facebook.name}} -
+        {{currentUser.services.facebook.gender}}
+        <button id="logout">Logout</button>
+    {{else}}
+        <button id="facebook-login" style="border-color: #2d5073;
+    background-color: #3b5998; padding: 1em;
+    background-image: url(http://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png);" class="btn btn-default"> Login with Facebook</button>
+
+    {{/if}}
+
         </div>
 
 </template>

@@ -1,17 +1,14 @@
 <template name="app">
-    {{> leftpanel}}
+   
     {{> header}}
 	<div id="main">
 		<!-- Intro -->
 			
 			<section id="top" class="one" >
 				<div class="container" style="">
-					{{#unless currentUser}}
-					  
-					 {{else}}
-					  {{> yield}}
-					{{/unless}}
+					{{> yield}}
 				</div>
 			</section>
 	</div>
+	{{> footer}}
 </template>

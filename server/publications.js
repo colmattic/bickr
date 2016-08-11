@@ -9,8 +9,7 @@ Meteor.publish("allUsernames", function() {
     return Meteor.users.find({}, {
         fields: {
             "username": 1,
-            "services.github.username": 1,
-            "services.twitter": 1
+            "services.facebook": 1
         }
     });
 

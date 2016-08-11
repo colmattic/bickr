@@ -61,6 +61,27 @@
 $color1:#d0021b;
 $color2:#d8d8d8;
 
+
+
+@font-face {
+  font-family: 'bickr';
+  src: url('/fonts/bickr.woff'); /* Pretty Modern Browsers */
+       
+}
+
+.bickr.arena::after {
+	content:'a';
+}
+
+.bickr {
+    display: inline-block;
+    font: normal normal normal 14px/1 'bickr';
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+
 	body {
 		background: #fff;
 		font-family: 'Source Sans Pro', sans-serif;
@@ -415,11 +436,11 @@ $color2:#d8d8d8;
 		
 
 		&:hover {
-			background-color: #000;
+			background-color: $color2;
 		}
 
 		&:active {
-			background-color: #7eaeac;
+			background-color: $color2;
 		}
 	}
 
@@ -542,9 +563,9 @@ $color2:#d8d8d8;
 		top: 0;
 		left: 0px;
 		width: 100%;
-		height:40px;
+		
 		color: $color1;
-		background: $color1;
+		background: #fff;
 		text-align: right;
 
 	}
@@ -630,7 +651,7 @@ $color2:#d8d8d8;
 
 	#loggedin_user {
 	float:right;
-	padding: 1em 0;
+	
 	}
 	.player_user.message-u1{
 		position: absolute;
@@ -653,7 +674,7 @@ $color2:#d8d8d8;
 			position: absolute;
 			right:0;
 			top: 0;
-			color: $color2;
+			color: #00000;
 			
 			font-size: 1em;
 			line-height: 1em;
@@ -828,16 +849,16 @@ $color2:#d8d8d8;
 				width: 300px;
 			}
 
-		/* Footer */
-
-			#footer {
-				margin-left: 300px;
-			}
+	
 
 		/* Main */
 
-			#main {
+			#main #feed{
 				margin-left: 300px;
+			}
+
+			#main {
+				margin-left: 0px;
 			}
 
 	}

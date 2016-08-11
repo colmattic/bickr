@@ -1195,6 +1195,20 @@ body {
   .\-1u\28mobile\29 {
     margin-left: 8.33333%; } }
 /* Basic */
+@font-face {
+  font-family: 'bickr';
+  src: url("/fonts/bickr.woff");
+  /* Pretty Modern Browsers */ }
+.bickr.arena::after {
+  content: 'a'; }
+
+.bickr {
+  display: inline-block;
+  font: normal normal normal 14px/1 'bickr';
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased; }
+
 body {
   background: #fff;
   font-family: 'Source Sans Pro', sans-serif;
@@ -1452,13 +1466,13 @@ button,
   input[type="reset"]:hover,
   button:hover,
   .button:hover {
-    background-color: #000; }
+    background-color: #d8d8d8; }
   input[type="button"]:active,
   input[type="submit"]:active,
   input[type="reset"]:active,
   button:active,
   .button:active {
-    background-color: #7eaeac; }
+    background-color: #d8d8d8; }
 
 /* Item */
 .item {
@@ -1550,9 +1564,8 @@ button,
   top: 0;
   left: 0px;
   width: 100%;
-  height: 40px;
   color: #d0021b;
-  background: #d0021b;
+  background: #fff;
   text-align: right; }
 
 /* leftpanel */
@@ -1614,8 +1627,7 @@ button,
   vertical-align: top !important; }
 
 #loggedin_user {
-  float: right;
-  padding: 1em 0; }
+  float: right; }
 
 .player_user.message-u1 {
   position: absolute;
@@ -1636,7 +1648,7 @@ button,
     position: absolute;
     right: 0;
     top: 0;
-    color: #d8d8d8;
+    color: #00000;
     font-size: 1em;
     line-height: 1em; }
   #loggedin_user .user p, .player_user .user p {
@@ -1751,13 +1763,12 @@ button,
   #leftpanel {
     width: 300px; }
 
-  /* Footer */
-  #footer {
+  /* Main */
+  #main #feed {
     margin-left: 300px; }
 
-  /* Main */
   #main {
-    margin-left: 300px; } }
+    margin-left: 0px; } }
 /* Normal */
 @media screen and (min-width: 961px) and (max-width: 1620px) {
   /* Main */
