@@ -55,5 +55,8 @@ Meteor.methods({
     // Channels.update(vote.channel, {
     //   $set: { score: nextUserId },
     // });
+  },
+  updateProfile: function(picture){
+    Meteor.users.update({_id: user._id}, {$set: {profile: picture}});
   }
 });

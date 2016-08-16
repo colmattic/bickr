@@ -36,12 +36,12 @@ Meteor.publish('singleUser', function(userId) {
     return Meteor.users.find(userId);
 });
 
-Meteor.publish("userProfile", function(username) {
+Meteor.publish("userProfile", function(userId) {
     // simulate network latency by sleeping 2s
     Meteor._sleepForMs(2000);
     // try to find the user by username
     var user = Meteor.users.findOne({
-        username: username
+        _id: userId
     });
     // if we can't find it, mark the subscription as ready and quit
     if (!user) {
@@ -59,8 +59,8 @@ Meteor.publish("userProfile", function(username) {
         // instead of the whole property
         return Meteor.users.find(user._id, {
             fields: {
-                "profile": 0,
-                "services": 0
+                "profile": 1,
+                "services": 1
             }
         });
     }

@@ -1,15 +1,15 @@
 <template name="user">
 <div class="user">			
 			
-				<a href="/profile/{{user.services.facebook.id}}">
-				<h1 id="title">{{user.services.facebook.name}}</h1>
+				<a href="/profile/{{user._id}}">
+				<h1 id="title">{{user.profile.name}}</h1>
 				<span class="image avatar48">
-				<img src="" alt="" />
+				<img src="{{user.profile.picture}}" alt="" />
 				</span> 
-				<span class="connection_status"></span> 
-
 				</a>
-				<a href="#" id="" class="follow_user" data-name="{{user.services.facebook.id}}" ><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+				<a href="#" id="" class="follow_user" data-id="{{user._id}}" >
+				Follow
+				</a>
 				
 			
 							

@@ -1,5 +1,4 @@
 <template name="profile">
-		{{currentUser.services.facebook.name}} -
-        {{currentUser.services.facebook.gender}}
+		{{> user user=currentUser}}	
         <button id="logout">Logout</button>
 </template>

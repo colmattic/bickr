@@ -14,7 +14,6 @@ Meteor.subscribe('posts' , Meteor.userId());
 Meteor.subscribe('follows' , Meteor.userId());
 Meteor.subscribe('allUsernames');
 
-
 Posts.allow({
   insert: function (userId, doc) {
     return (userId && doc.user === userId);
@@ -55,12 +54,7 @@ Template.registerHelper("usernameFromId", function (userId) {
     if (typeof user === "undefined") {
         return "Anonymous";
     }
-    if (typeof user.services.github !== "undefined") {
-        return user.services.github.username;
-    }
-    if (typeof user.services.twitter !== "undefined") {
-        return user.services.twitter.screenName;
-    }
+    
     return user.username;
 });
 
@@ -172,13 +166,12 @@ Template.user3.helpers({
     }
 });
 
+
+
 Template.friends.helpers ({
 getFriends: function(){
    
-    var results = FacebookCollections.getFriends("me",["id","name"],100);
-
-    results = [{name:'sian oneil', id:123456}, {name:'shaun joffe', id:98766}];
-    return results;
+    return '';
     
 }
 });
@@ -331,3 +324,32 @@ function replaceAll(str, find, replace) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
 
+getFacebookFriendsCollection = function(facebookid,access_token){
+      var collection = new Meteor.Collection(null);
+      var retries = 0;
+      var count = 0;
+      var self = this;
+      FB.api('me/friends?access_token='+ access_token, function(response) {
+              if (response && !response.error){
+                  var items = response.data;
+                  var paging = response.paging;
+                  if(items.length > 0) {
+                    $.each(items, function(doc){
+                     collection.insert(doc); 
+                  });
+                  }
+                  
+                  // count += items.length;
+                  // if (count<maxItems && paging && paging.next){
+                  //     retries = 0;
+                  //     self._get(paging.next,handleResponse);
+                  // }
+              } else if (retries<3) {
+                  retries+=1;
+                  console.log("FB: ",response.error);
+              } else {
+                  console.log("Exceeded");
+              }
+              return collection;
+      });
+}

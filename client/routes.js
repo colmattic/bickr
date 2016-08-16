@@ -36,15 +36,11 @@ Router.route("/feed/",{
     name:"feed"
 });
 
-Router.route("/friends/",{
-    name:"friends"
-});
 
 Router.route("/privacy/",{
     name:"privacy"
 });
 
-privacy
 
 // add the dataNotFound plugin, which is responsible for
 // rendering the dataNotFound template if your RouteController
@@ -56,6 +52,11 @@ Router.plugin("dataNotFound",{
 Router.route("/profile/:id",{
     name:"profile",
     controller:"ProfileController"
+});
+
+Router.route("/friends/",{
+    name:"friends",
+    controller:"FriendsController"
 });
 
 
