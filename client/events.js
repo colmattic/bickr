@@ -263,6 +263,16 @@ Template.profile.events({
     }
 });
 
+Template.loggedin_user.events({
+    'click #logout': function(event) {
+        Meteor.logout(function(err){
+            if (err) {
+                throw new Meteor.Error("Logout failed");
+            }
+        })
+    }
+});
+
 Template.footer.events({
     'click #logout': function(event) {
         Meteor.logout(function(err){

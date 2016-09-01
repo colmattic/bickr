@@ -1,11 +1,9 @@
 <template name="friends">
-
-<ul>
-	{{#each getFriends}}
-                 {{> friend name=name id=id}}
-            {{/each}}
-</ul>
-            
-        
-                    
+<ul style="width:100%; height:100%; margin:10px;">
+	{{#each facbookusers}}
+         {{> friend name=name id=id picture=picture.data.url}}
+    {{/each}}
+    
+</ul> 
+<a href="/arena/create/" id="next" class="button">Next</a>			                        
  </template>      
