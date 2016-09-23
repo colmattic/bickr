@@ -16,7 +16,7 @@ Meteor.publish("allUsernames", function() {
 });
 
 Meteor.publish('channels', function(userId) {
-    return Channels.find({$or: [{'u1': userId},{'u2': userId}]});
+    return Channels.find({ $or: [{ 'u1': userId }, { 'u2': userId }] });
 });
 
 
@@ -29,7 +29,7 @@ Meteor.publish('follow', function(userId) {
 });
 
 Meteor.publish('posts', function(userId) {
-    return Posts.find({ u1: userId });
+    return Posts.find({ u: userId });
 });
 
 Meteor.publish('singleUser', function(userId) {
@@ -65,7 +65,3 @@ Meteor.publish("userProfile", function(userId) {
         });
     }
 });
-
-
-
-
