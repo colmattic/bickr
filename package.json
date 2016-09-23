@@ -5,9 +5,10 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "grunt": "^1.0.1",
     "gulp-sass": "^2.2.0",
-    "load-grunt-tasks": "^3.4.1",
-    "meteor-node-stubs": "~0.2.0"
+    "load-grunt-tasks": "^3.5.2",
+    "meteor-node-stubs": "^0.2.3"
   },
   "devDependencies": {
     "gulp": "~3.9.1",

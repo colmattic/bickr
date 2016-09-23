@@ -48,15 +48,12 @@ Template.createchannel.events({'submit .new-channel': function (e) {
     subject = subject.toLowerCase();
     subject = subject.replace(/\s/g, '');
     subject = subject.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~()]/g,"");
-    
-    var p = $("#p").is(":checked") ? true : false;
-
-
+    var p = parseInt($("#p").val());
+    p =  (p==1) ? true : false;
     var channel = {
       'subject':subject,
-      'u2':target.u2.value,
-      'u3':target.u3.value,
       'l':target.l.value,
+      'u': Session.get("channelfriends"),
       'p':p
     };
 
@@ -64,6 +61,7 @@ Template.createchannel.events({'submit .new-channel': function (e) {
  
     // Clear form
     target.subject.value = '';
+    Session.set("channelfriends" ,'');
   },
 });
 
@@ -280,6 +278,20 @@ Template.footer.events({
                 throw new Meteor.Error("Logout failed");
             }
         })
+    }
+});
+
+Template.friends.events({
+    'click .friendcheckbox': function(e) {
+        const target = e.currentTarget;
+        var channelfriends = [];
+        
+        if(Session.get("channelfriends")){
+          channelfriends = Session.get("channelfriends");
+        }
+        channelfriends.push(target.id);
+        Session.set("channelfriends", channelfriends);
+        debugger;
     }
 });
 

@@ -10,7 +10,7 @@ Router.route('/', function () {
   }
 });
 
-Router.route('/arenas/:username/:channel/', function () {
+Router.route('/arenas/:id/:channel/', function () {
     
   Session.set('channel', this.params.channel);
  
@@ -23,7 +23,7 @@ Router.route("/arenas/",{
     name:"channels"
 });
 
-Router.route("/arena/create/:_subject?",function(){
+Router.route("/arena/settings/:_subject?",function(){
 
     Session.set('subject', this.params._subject);
     this.render('createchannel');
@@ -54,7 +54,7 @@ Router.route("/profile/:id",{
     controller:"ProfileController"
 });
 
-Router.route("/friends/",{
+Router.route("/arena/friends/",{
     name:"friends",
     controller:"FriendsController"
 });

@@ -2,19 +2,19 @@
       <form class="new-channel">
       	<label for="text">Subject</label>
         <input type="text" name="subject" value="{{subject}}" placeholder="Type to add new channel" />
-        <label for="u2">Add your opponent</label>
-        <input type="text" name="u2" id="u2" class="form-control u2" placeholder="Add user..." />
-        {{> user2}}
-        <label for="u2">Add at lease one voter</label>
-        <input type="text" name="u3" id="u3" class="form-control u3" placeholder="Add user..." />
-        {{> user3}}
-        <label for="p">Private</label>
-        <input type="checkbox" name="p" id="p" />
-        <label for="l">Length of battle</label>
-        <input type="radio" name="l" value="day">1 day <br>
-        <input type="radio" name="l" value="week">1 week<br>
-        <input type="radio" name="l" value="month">1 month<br>
-        <input type="radio" name="l" value="unlimited"> Unlimited
+        <label for="p">Privacy</label>
+        <select name="p" id="p">
+            <option value="1">Open</option>
+            <option value="0">Private</option>
+        </select>
+        <label for="l">Length of Arena</label>
+        <select name="l">
+            <option value="1">1 day </option>
+            <option value="7">1 week</option>
+            <option value="31">1 month</option>
+            <option value="-1"> Unlimited</option>
+        </select>
+        
         <input type="submit" name="submit" value="Create" />
 
       </form>

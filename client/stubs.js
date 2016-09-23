@@ -17,11 +17,17 @@ Meteor.methods({
   newChannel: function (channel) {
     channel.timestamp = Date.now();
     channel.u1 = Meteor.userId();
-    channel.u2 = idFromUsername(channel.u2);
-    channel.u3 = idFromUsername(channel.u3);
+    var arrUsers =[];
+    
+    channel.u.map(function(id){
+      var userid = idFromFbId(id);
+      arrUsers.push({userid:userid, FbId: id, main: true});
+    });
+
+    channel.u = arrUsers;
     channel.turn = Meteor.userId();
     channel.s = false;
-    channel.u = 1;
+
     Channels.insert(channel);
 
     if(!channel.p){

@@ -28,6 +28,7 @@ Follows.allow({
   }
 });
 
+
 Posts.before.insert(function (userId, doc) {
   doc.timestamp = Date.now();
 });
