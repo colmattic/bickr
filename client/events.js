@@ -290,7 +290,6 @@ Template.footer.events({
         })
     }
 });
-<<<<<<< HEAD
 
 Template.friends.events({
     'click .friendcheckbox': function(e) {
@@ -306,7 +305,3 @@ Template.friends.events({
     }
 });
 
-
-
-=======
->>>>>>> 11df1989298ddbe0ad63d7cfc499c1ee9b37e568
