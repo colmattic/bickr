@@ -35,7 +35,6 @@ Template.createchannel.events({
     'keyup input.u3': function(e) {
         Session.set("u3", e.currentTarget.value);
     }
-<<<<<<< HEAD
   });
 
 
