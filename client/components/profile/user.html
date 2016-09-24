@@ -1,18 +1,13 @@
 <template name="user">
 <div class="user">			
 			
-				<a href="/profile/{{user._id}}">
-				<h1 id="title">{{user.profile.name}}</h1>
-				<span class="image avatar48">
-				<img src="{{user.profile.picture}}" alt="" />
-				</span> 
-				</a>
-				<a href="#" id="" class="follow_user" data-id="{{user._id}}" >
-				Follow
-				</a>
-				
-			
-							
-							
+		<a href="/profile/{{user._id}}">
+		<span class="image avatar48">
+		<img src="{{user.profile.picture}}" alt="" />
+		</span> 
+		</a>
+		<!-- <a href="#" id="" class="follow_user" data-id="{{user._id}}" >
+		<i class="fa fa-user-plus" aria-hidden="true"></i>
+		</a>	 -->					
 </div>
 </template>

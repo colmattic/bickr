@@ -18,10 +18,16 @@
 		    </div>
 		    
 		    {{#if equals currentUser._id channel.turn}}
-		    <div class="input-box" id="send-message">
-		            <input type="text" id="input-box_text" class="input-box_text" placeholder="Send a fucking message, its your turn. Fool.">
-		            {{> emojis}}
-		    </div>
+		    <div>
+		        <div class="input-box" id="send-message" style="width:98%;">
+		        	<div style="width:95%; float:left;"><input type="text" id="input-box_text" class="input-box_text" placeholder="Send a fucking message, its your turn. Fool."></div>
+		        	<div style="width:5%; float:right;"><a href="#" style="width:100%;" class="button new_post" ><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a></div>
+		        	{{> emojis}}
+		        </div>
+
+		        
+		        </div>
+
 		    {{else}}
 		    <div class="notyourturn" id="">
 		    It's not your turn! Dumbass!

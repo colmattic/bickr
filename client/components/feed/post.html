@@ -1,6 +1,6 @@
 <template name="post">
 
-<div class="post {{active}}">
+<div class="post triangle-border {{active}} ">
 <span class="post_timestamp">{{timestampToTime timestamp}}</span> - <a href="" class="post_username">{{usernameFromId user}}</a> 
 <div class="post_content">
 {{text}}
@@ -10,7 +10,7 @@
        
         <a href="#" class="vote_up" data-message="{{id}}" data-channel="{{channelId}}" ><i class="fa fa-arrow-up" aria-hidden="true"></i></a><span class="vote_up_score"></span>
         <a href="#" class="vote_down" data-message="{{id}}" data-channel="{{channelId}}"><i class="fa fa-arrow-down" aria-hidden="true"></i></a><span class="vote_down_score"></span>
-        <a href="/arena/create/{{text}}" id="" class="">bickr ></a>
+        <a href="/arena/friends/{{text}}" id="" class="">bickr ></a>
 <a href="#" id="" class="followpost" data-name="{{name}}" ><i class="fa fa-plus" aria-hidden="true"></i></a></div>
  </div>       
               

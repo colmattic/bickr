@@ -1,7 +1,12 @@
 <template name="createpost">
       <form class="new-post">
-        <input type="text" name="text" id="text" placeholder="Whats up...?" />
-        <a href="#" class="button new_post" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+      <div>
+        <div style="width:100%; height:90px;">
+        	<div style="width:95%; float:left;"><input type="text" name="text" id="text" placeholder="Whats up...?"  /></div>
+        	<div style="width:5%; float:right;"><a href="#" style="width:100%;" class="button new_post" ><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a></div>
+        </div>
+
         {{> emojis}}
+        </div>
       </form> 
 </template>

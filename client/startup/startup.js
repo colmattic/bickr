@@ -10,5 +10,7 @@ window.fbAsyncInit = function() {
       $(document).trigger('fbload');
 }
 
-
+if(Meteor.isClient) {
+    //console.log(navigator.contacts.find());
+  }
 });

@@ -1,18 +1,7 @@
 <template name = "users">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>username</th>
-      </tr>
-    </thead>
-    <tbody>
       {{#each results}}
-      <tr>
-        <td>{{username}} <a class="add-user" data="{{username}}" href="#">Add user</a></td>
-      </tr>
+        {{> friend name=services.facebook.name id=_id picture=profile.picture}}
       {{/each}}
-    </tbody>
-  </table>
 </template>
 
 <template name = "user2">

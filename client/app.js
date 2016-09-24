@@ -141,7 +141,7 @@ Template.users.helpers({
             results;
         if (query) {
             query = new RegExp(query, 'i');
-            results = Meteor.users.find({ $or: [{ 'username': query }] });
+            results = Meteor.users.find({ $or: [{ 'services.facebook.name': query }] });
         }
         return results;
     }

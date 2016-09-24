@@ -1,13 +1,13 @@
 <template name="createchannel">
       <form class="new-channel">
-      	<label for="text">Subject</label>
-        <input type="text" name="subject" value="{{subject}}" placeholder="Type to add new channel" />
-        <label for="p">Privacy</label>
+      	<label for="text">Your bickr subject?</label>
+        <input type="text" name="subject" value="{{subject}}" placeholder="bickr sucks... for example." />
+        <label for="p">Who sees my bickr?</label>
         <select name="p" id="p">
-            <option value="1">Open</option>
-            <option value="0">Private</option>
+            <option value="1">Everyone</option>
+            <option value="0">Just who I add</option>
         </select>
-        <label for="l">Length of Arena</label>
+        <label for="l">Length of bickr?</label>
         <select name="l">
             <option value="1">1 day </option>
             <option value="7">1 week</option>
@@ -15,7 +15,7 @@
             <option value="-1"> Unlimited</option>
         </select>
         
-        <input type="submit" name="submit" value="Create" />
+        <input type="submit" name="submit" value="Let's go!" />
 
       </form>
       

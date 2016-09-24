@@ -25,7 +25,7 @@ Router.route("/arenas/",{
 
 Router.route("/arena/settings/:_subject?",function(){
 
-    Session.set('subject', this.params._subject);
+    
     this.render('createchannel');
 });
 
@@ -54,7 +54,7 @@ Router.route("/profile/:id",{
     controller:"ProfileController"
 });
 
-Router.route("/arena/friends/",{
+Router.route("/arena/friends/:_subject?",{
     name:"friends",
     controller:"FriendsController"
 });
