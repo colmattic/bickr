@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "grunt": "^1.0.1",
     "gulp-sass": "^2.2.0",
     "load-grunt-tasks": "^3.5.2",

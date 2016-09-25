@@ -1,6 +1,6 @@
-Meteor.publish('messages', function(channel) {
+Meteor.publish('messages', function(channelId) {
 
-    return Messages.find({ channel: channel });
+    return Messages.find({ channelId: channelId });
 
 });
 
@@ -29,7 +29,7 @@ Meteor.publish('follow', function(userId) {
 });
 
 Meteor.publish('posts', function(userId) {
-    return Posts.find({ u: userId });
+    return Posts.find({ u: userId }, {sort: {timestamp: -1}});
 });
 
 Meteor.publish('singleUser', function(userId) {

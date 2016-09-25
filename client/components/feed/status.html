@@ -1,9 +1,10 @@
-<template name="posts"> 
+<template name="status">   
         <div>  
                 <ul class="post_list">
                     {{#each feed}}
                         {{> post text=text name=name timestamp=timestamp user=u class=class facebook=facebook}}
                 	{{/each}}
                 </ul>
-        </div>         
+        </div>
+                    
  </template>      

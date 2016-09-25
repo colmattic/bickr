@@ -1,17 +1,33 @@
 Template.messages.events({
     'keypress input': function(e) {
-        var inputVal = $('.input-box_text').val();
+        var inputVal = $('#input-box_text').val();
         if (!!inputVal) {
             var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
             if (charCode == 13) {
                 e.stopPropagation();
                 Meteor.call('newMessage', {
-                    text: $('.input-box_text').val(),
-                    channel: Session.get('channel')
+                    text: $('#input-box_text').val(),
+                    channelId: Session.get('channelId')
                 });
-                $('.input-box_text').val("");
+                $('#input-box_text').val("");
                 return false;
             }
+        }
+    }
+});
+
+Template.messages.events({'click .new_message': function(e) {
+        var inputVal = $('#input-box_text').val();
+        if (!!inputVal) {
+            
+                e.stopPropagation();
+                Meteor.call('newMessage', {
+                    text: $('#input-box_text').val(),
+                    channelId: Session.get('channelId')
+                });
+                $('#input-box_text').val("");
+                return false;
+            
         }
     }
 });
@@ -26,16 +42,6 @@ Template.createchannel.events({
         Session.set("user-search-query", e.currentTarget.value);
     }
 });
-Template.createchannel.events({
-    'keyup input.u2': function(e) {
-        Session.set("u2", e.currentTarget.value);
-    }
-});
-Template.createchannel.events({
-    'keyup input.u3': function(e) {
-        Session.set("u3", e.currentTarget.value);
-    }
-  });
 
 
 Template.createchannel.events({'submit .new-channel': function (e) {
@@ -295,13 +301,12 @@ Template.friends.events({
     'click .friendcheckbox': function(e) {
         const target = e.currentTarget;
         var channelfriends = [];
-        
+        //Session.set("channelfriends", []);
         if(Session.get("channelfriends")){
           channelfriends = Session.get("channelfriends");
         }
         channelfriends.push(target.id);
         Session.set("channelfriends", channelfriends);
-        debugger;
     }
 });
 

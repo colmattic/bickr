@@ -1668,7 +1668,7 @@ button,
   position: fixed;
   bottom: 0;
   height: 200px;
-  width: 78.7%;
+  width: 60%;
   z-index: 9999;
   background-color: #ffffff; }
 
@@ -2144,4 +2144,18 @@ button,
 .tabbed > input:checked + section > h1{
   position : relative;
   z-index  : 2;
+}
+.facebook{
+   color: #3b5998!important;  
+border-color:#3b5998;
+background: #f7f7f7 !important;
+}
+.facebook:after, .facebook:before{
+
+border-color: #3b5998 transparent;
+background:#ffffff;
+
+}
+.facebook a{
+   color: #8b9dc3!important;
 }

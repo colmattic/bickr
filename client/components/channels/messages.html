@@ -3,8 +3,16 @@
 	<div id="arena">
 		
 		<div id="players">
-		<div class="player_user message-u1">{{> user user=channel.obju1}} <h2>{{channel.obju1.score}}</h2></div>
-		<div class="player_user message-u2">{{> user user=channel.obju2}}  <h2>{{channel.obju2.score}}</h2></div>
+		<div class="player_user message-u1">
+		{{> user user=channel.obju1}} 
+		{{channel.obju1.services.facebook.name}}
+		<h2>{{channel.obju1.score}}</h2>
+		</div>
+		<div class="player_user message-u2">
+		{{> user user=channel.obju2}}
+		{{channel.obju2.services.facebook.name}}
+		<h2>{{channel.obju2.score}}</h2>
+		</div>
 		<h1>#{{channel.subject}}</h1>
 		
 		
@@ -18,14 +26,45 @@
 		    </div>
 		    
 		    {{#if equals currentUser._id channel.turn}}
-		    <div>
-		        <div class="input-box" id="send-message" style="width:98%;">
-		        	<div style="width:95%; float:left;"><input type="text" id="input-box_text" class="input-box_text" placeholder="Send a fucking message, its your turn. Fool."></div>
-		        	<div style="width:5%; float:right;"><a href="#" style="width:100%;" class="button new_post" ><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a></div>
-		        	{{> emojis}}
-		        </div>
+		    <div class="input-box" id="send-message" style="width:65.3%;" >
+		        <div class="tabbed">
 
-		        
+				  <!-- first panel -->
+				  <input name="tabbed" id="tabbed1" type="radio" checked>
+				  <section>
+				    <h1>
+				      <label for="tabbed1">message</label>
+				    </h1>
+				    <div>
+		        	<input type="text" style="height: 100px; width:90%; position: absolute;left: 0;" id="input-box_text" placeholder="Send a fucking message, its your turn. Fool.">
+		        	<a href="#" style="position: absolute;right: 0; width:10%; background-color: #ffffff; color:#d0021b!important; display:inline-block;" class="button new_message" ><i class="fa fa-arrow-circle-right" style="    font-size: 70px;"  aria-hidden="true"></i></a>
+		        	<!--  -->
+		        	</div>
+				  </section>
+
+				  <input name="tabbed" id="tabbed2" type="radio" >
+				  <section>
+				    <h1>
+				      <label for="tabbed2">hashtags</label>
+				    </h1>
+				    <div>
+				    {{> hashtags}}
+				    </div>
+				  </section>
+
+				  <!-- second panel -->
+
+				  <input name="tabbed" id="tabbed3" type="radio">
+				  <section>
+				    <h1>
+				      <label for="tabbed3">emojies</label>
+				    </h1>
+				    <div>
+				    {{> emojis}}
+				    </div>
+				  </section>
+
+				</div>
 		        </div>
 
 		    {{else}}

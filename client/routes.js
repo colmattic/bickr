@@ -2,18 +2,16 @@ Router.configure({
   layoutTemplate: 'app'
 });
 
-Router.route('/', function () {
-  if (!Meteor.user() && this.ready()){ 
-  	this.render('loginPage');
-  }else{
-    this.render('feed');
-  }
+Router.route('/', {
+  name:"feed",
+    controller:"FeedController"
+  
 });
 
-Router.route('/arenas/:id/:channel/', function () {
+Router.route('/arenas/:channelId/:channel/', function () {
     
   Session.set('channel', this.params.channel);
- 
+  Session.set('channelId', this.params.channelId);
   this.render('messages');
   
   
@@ -32,10 +30,6 @@ Router.route("/arena/settings/:_subject?",function(){
 Router.route("/search/",{
     name:"search"
 });
-Router.route("/feed/",{
-    name:"feed"
-});
-
 
 Router.route("/privacy/",{
     name:"privacy"
