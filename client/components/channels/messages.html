@@ -3,19 +3,16 @@
 	<div id="arena">
 		
 		<div id="players">
-		<div class="player_user message-u1">
-		{{> user user=channel.obju1}} 
-		{{channel.obju1.services.facebook.name}}
-		<h2>{{channel.obju1.score}}</h2>
-		</div>
-		<div class="player_user message-u2">
-		{{> user user=channel.obju2}}
-		{{channel.obju2.services.facebook.name}}
-		<h2>{{channel.obju2.score}}</h2>
-		</div>
-		<h1>#{{channel.subject}}</h1>
-		
-		
+			<h1>#{{channel.subject}}</h1>
+			<div class="player_user message-u1">
+			{{> user user=channel.obju1}} 
+			
+			<h2>{{channel.obju1.services.facebook.name}}</h2><h3>{{channel.obju1.score}}</h3>
+			</div>
+			<div class="player_user message-u2">
+			{{> user user=channel.obju2}}
+			<h2>{{channel.obju2.services.facebook.name}}</h2><h3> {{channel.obju2.score}}</h3>
+			</div>
 		</div>
     
         {{#if Template.subscriptionsReady}}
@@ -26,7 +23,7 @@
 		    </div>
 		    
 		    {{#if equals currentUser._id channel.turn}}
-		    <div class="input-box" id="send-message" style="width:65.3%;" >
+		    <div class="input-box" id="send-message" style="width:100%;" >
 		        <div class="tabbed">
 
 				  <!-- first panel -->

@@ -11,6 +11,8 @@ window.fbAsyncInit = function() {
 }
 
 if(Meteor.isClient) {
-    //console.log(navigator.contacts.find());
+    
+    
+    
   }
 });

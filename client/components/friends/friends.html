@@ -1,5 +1,5 @@
 <template name="friends">
-<a href="/arena/settings/" id="next" class="button"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+<a href="/arena/settings/" id="next" class="button"><span>Next</span><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
   <div class="tabbed">
 
   <!-- first panel -->
@@ -7,10 +7,10 @@
   <input name="tabbed" id="tabbed1" type="radio" checked>
   <section>
     <h1>
-      <label for="tabbed1">Facebook</label>
+      <label for="tabbed1">Friends</label>
     </h1>
     <div>
-    {{> facebook}}
+    {{> follows}}
     </div>
   </section>
 
@@ -19,7 +19,7 @@
   <input name="tabbed" id="tabbed2" type="radio">
   <section>
     <h1>
-      <label for="tabbed2">bickr</label>
+      <label for="tabbed2">Search</label>
     </h1>
     <div>
     {{> search}}

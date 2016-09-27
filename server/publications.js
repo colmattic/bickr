@@ -1,7 +1,5 @@
 Meteor.publish('messages', function(channelId) {
-
     return Messages.find({ channelId: channelId });
-
 });
 
 Meteor.publish("allUsernames", function() {
@@ -24,7 +22,7 @@ Meteor.publish('votes', function() {
     return Votes.find();
 });
 
-Meteor.publish('follow', function(userId) {
+Meteor.publish('follows', function(userId) {
     return Follows.find({ u: userId });
 });
 

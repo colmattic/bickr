@@ -1,13 +1,11 @@
-isChannelPrivate = function(id) {
-
-    var channel = Channels.findOne({ _id: id });
+isChannelPrivate = (id) => {
+    const channel = Channels.findOne({ _id: id });
     return channel.p;
-
 };
 
-whosTurnNext = function(id, userId) {
+whosTurnNext = (id, userId) =>{
 
-    var channel = Channels.findOne({ _id: id });
+    const channel = Channels.findOne({ _id: id });
     if (channel.u1 == userId) {
         return channel.u2;
     } else if (channel.u2 == userId) {
@@ -15,28 +13,30 @@ whosTurnNext = function(id, userId) {
     }
 };
 
-whosTurnNow = function(id) {
+whosTurnNow = (id) =>{
 
-    var channel = Channels.findOne({ _id: id });
+    const channel = Channels.findOne({ _id: id });
     return channel.turn;
 
 };
 
-usernameFromId = function(userId) {
-    var user = Meteor.users.findOne({ _id: userId });
-    if (typeof user.services.facebook !== "undefined") {
+usernameFromId = (userId) => {
+    const user = Meteor.users.findOne({ _id: userId });
+    if(user){
+      if (typeof user.services.facebook !== "undefined") {
         return user.services.facebook.name;
+    }  
     }
+    
 };
-
-getUserObj = function(userId) {
-    var user = Meteor.users.findOne({ _id: userId });
+getUserObj = (userId) => {
+    const user = Meteor.users.findOne({ _id: userId });
     return user;
 };
 
-idFollowFromName = function(follow) {
+idFollowFromName = (follow) => {
 
-    var result
+    let result
 
     switch (follow.type) {
         case 'u':
@@ -51,8 +51,8 @@ idFollowFromName = function(follow) {
     }
     return result._id;
 };
-hasVoted = function(message) {
-    var result = Votes.find({ 'message': message, 'u': Meteor.userId() });
+hasVoted = (message) => {
+    const result = Votes.find({ 'message': message, 'u': Meteor.userId() });
     if (result.count()) {
         return true;
     } else {
@@ -60,27 +60,23 @@ hasVoted = function(message) {
     }
 
 }
-
-getChannelScore = function(channel, userid) {
+getChannelScore = (channel, userid) =>{
 
     processed_data = [];
-    var result = 0;
-    Deps.autorun(function(c) {
-
-        var cursor = Votes.find({ 'channel': channel });
+    let result = 0;
+    Deps.autorun((c) => {
+        let cursor = Votes.find({ 'channel': channel });
         if (!cursor.count()) return;
-
-        cursor.forEach(function(row) {
+        cursor.forEach((row) =>{
             result += parseInt(row.value);
             processed_data.push(row.value);
         });
-
         c.stop();
     });
     return result;
 
 }
-getMessageScore = function(message, type) {
+getMessageScore = (message, type) => {
 
     processed_data = [];
     var result = 0;
@@ -101,30 +97,23 @@ getMessageScore = function(message, type) {
 
 
     return result;
-
 }
-
-userFromMessage = function(message) {
-    var result = Messages.find({ '_id': message });
+userFromMessage = (message) => {
+    const result = Messages.find({ '_id': message });
     return result.user;
 }
-
-doEmojie = function(tmpl, data) {
+doEmojie = (tmpl, data) =>{
     data = data.replace(/(^|\W)(#[a-z\d][\w-]*)/ig, '<img class="emojie" src="/images/$2.jpg"/>');
     data = replaceAll(data, '#', '');
     return data;
 }
-
-function replaceAll(str, find, replace) {
+replaceAll = (str, find, replace) => {
     return str.replace(new RegExp(find, 'g'), replace);
 }
+getFacebookFriendsCollection = (facebookid, access_token) =>{
 
-
-getFacebookFriendsCollection = function(facebookid, access_token) {
-
-    var retries = 0;
-    var count = 0;
-    var self = this;
+    let retries = 0;
+    let count = 0;
     response = {
         "data": [{
             "id": "AaI6W6uKIzzn2hCozxnTQizsgZq5vkqrPgdyNMuOLhgdY-rTdwUpboYH5HWDJj8Jh0mXdr7rh0O0w0-nM_EMmSMFeAf5Bg_7RoYiMPDQCD60_g",
@@ -361,8 +350,8 @@ getFacebookFriendsCollection = function(facebookid, access_token) {
         }
     };
     if (response && !response.error) {
-        var items = response.data;
-        var paging = response.paging;
+        const items = response.data;
+        const paging = response.paging;
         if (items.length > 0) {
             items.map(function(item) {
                 FacebookFriends.insert(item);
@@ -392,15 +381,12 @@ getFacebookFriendsCollection = function(facebookid, access_token) {
     //     }
 
     // }
-
-
 }
 
-getFeed = function(facebookid, access_token) {
+getFeed = (facebookid, access_token) => {
 
-    var retries = 0;
-    var count = 0;
-    var self = this;
+    let retries = 0;
+    let count = 0;
     response = {
                   "data": [
                     {
@@ -546,12 +532,12 @@ getFeed = function(facebookid, access_token) {
                   }
                 };
     if (response && !response.error) {
-        var items = response.data;
-        var paging = response.paging;
+        const items = response.data;
+        const paging = response.paging;
         if (items.length > 0) {
             items.map(function(item) {
-                var post = {text:item.message, name:item.message, timestamp:item.created_time, user:Meteor.userId(), class:'facebook', facebook:true}
-                Feed.insert(post);
+                const post = {text:item.message, name:item.message, timestamp:item.created_time, user:Meteor.userId(), class:'facebook', facebook:true}
+                FacebookFeed.insert(post);
             });
         }
     } else if (retries < 3) {
@@ -559,15 +545,5 @@ getFeed = function(facebookid, access_token) {
         console.log("FB: ", response.error);
     } else {
         console.log("Exceeded");
-    }
-
-    // var feed = Feed.find().fetch();
-    // var posts = Posts.find().fetch();
-    // var docs = feed.concat(posts);
-    //_.sortBy(docs, function(doc) {return doc.created_time;});
-    // Feed.remove({});
-    // docs.forEach(function(doc) {
-    //     Feed.insert(doc);
-    // });
+    }   
 }
-
