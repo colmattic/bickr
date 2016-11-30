@@ -21,9 +21,10 @@ Meteor.methods({
     channel.u2 = channel.u[0];
     channel.turn = Meteor.userId();
     channel.s = false;
-
+    channel.exp = getChannelExpiration(channel.l);        
+    
     Channels.insert(channel);
-
+    
         if (!channel.p) {
             var post = {
                 'text': channel.subject,

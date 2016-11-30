@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(function () {
+// ensure that channels documents have TTL index
+Channels._ensureIndex( { "exp": 1 }, { expireAfterSeconds: 10 } );
+
  //  smtp = {
  //    username: '',
  //    password: '',
@@ -175,4 +178,19 @@ getMessageScore = function(message,type){
 userFromMessage= function(message){
   var result = Messages.find({'_id': message});
   return result.user;
+}
+
+getChannelExpiration = function(chanLength){
+    var date = moment();
+    var expDate;
+    if(chanLength == -1) {
+       expDate = date.add(100, 'years').toDate();       
+        return expDate;
+    } else {
+        expDate = date.add(chanLength, 'd').toDate();
+        return expDate;        
+    }
+
+
+
 }

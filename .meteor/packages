@@ -40,3 +40,5 @@ meteorhacks:fast-render
 fourseven:scss
 shell-server
 seba:minifiers-autoprefixer
+insecure
+momentjs:moment

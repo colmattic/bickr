@@ -8,9 +8,10 @@ Accounts.ui.config({
 Meteor.subscribe('votes');
 
 Meteor.subscribe('allUsernames');
+Meteor.subscribe('friends');
 Meteor.subscribe('channels', Meteor.userId());
 Meteor.subscribe('posts', Meteor.userId());
-Meteor.subscribe('follows', Meteor.userId())
+Meteor.subscribe('follows', Meteor.userId());
 Meteor.subscribe('messages');
 
 Channels.after.insert((userId, doc) => {

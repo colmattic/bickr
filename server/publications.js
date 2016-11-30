@@ -17,6 +17,9 @@ Meteor.publish('channels', function(userId) {
     return Channels.find({ $or: [{ 'u1': userId }, { 'u2': userId }] });
 });
 
+Meteor.publish('friends', function() {
+    return Friends.find();
+});
 
 Meteor.publish('votes', function() {
     return Votes.find();
