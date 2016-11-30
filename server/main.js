@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(function () {
 // ensure that channels documents have TTL index
-Channels._ensureIndex( { "exp": 1 }, { expireAfterSeconds: 10 } );
+Channels._ensureIndex( { "exp": 1 }, { expireAfterSeconds: 1 } );
 
  //  smtp = {
  //    username: '',
@@ -184,13 +184,10 @@ getChannelExpiration = function(chanLength){
     var date = moment();
     var expDate;
     if(chanLength == -1) {
-       expDate = date.add(100, 'years').toDate();       
+        expDate = date.add(100, 'years').toDate();       
         return expDate;
     } else {
         expDate = date.add(chanLength, 'd').toDate();
         return expDate;        
     }
-
-
-
 }
